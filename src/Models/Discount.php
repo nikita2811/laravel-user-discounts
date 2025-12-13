@@ -17,4 +17,8 @@ class Discount extends Model
         'expires_at',
         'usage_limit_per_user',
     ];
+    public function userDiscounts()
+    {
+        return $this->hasMany(UserDiscount::class);
+    }
 }

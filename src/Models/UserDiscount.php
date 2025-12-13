@@ -14,4 +14,9 @@ class UserDiscount extends Model
         'usage_count',
         'revoked',
     ];
+
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
 }
