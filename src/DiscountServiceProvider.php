@@ -16,7 +16,7 @@ class DiscountServiceProvider extends ServiceProvider
     {
         //
         $this->app->singleton(DiscountManagerContract::class, DiscountManager::class);
-        $this->app->alias(DiscountContract::class, 'discounts');
+        $this->app->alias(DiscountManagerContract::class, 'discounts');
     }
 
     /**
@@ -25,5 +25,8 @@ class DiscountServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'discounts-migrations');
     }
 }
