@@ -7,7 +7,7 @@ use Nikita\LaravelUserDiscounts\Contracts\DiscountManagerContract;
 use Nikita\LaravelUserDiscounts\Services\DiscountManager;
 
 
-class UserDiscountServiceProvider extends ServiceProvider
+class DiscountServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
