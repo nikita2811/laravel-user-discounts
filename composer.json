@@ -1,5 +1,5 @@
 {
-    "name": "nikita/laravel-user-discounts",
+    "name": "nikitasaxena/laravel-user-discounts",
     "autoload": {
         "psr-4": {
             "Nikita\\LaravelUserDiscounts\\": "src/"
