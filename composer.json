@@ -1,0 +1,25 @@
+{
+    "name": "nikita/laravel-user-discounts",
+    "autoload": {
+        "psr-4": {
+            "Nikita\\LaravelUserDiscounts\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "nikita2811",
+            "email": "39294680+nikita2811@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vendor\\Discounts\\DiscountsServiceProvider"
+            ],
+            "aliases": {
+                "Discounts": "Vendor\\Discounts\\Facades\\Discounts"
+            }
+        }
+    }
+}
