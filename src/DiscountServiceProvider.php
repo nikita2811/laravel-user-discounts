@@ -28,5 +28,9 @@ class DiscountServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'discounts-migrations');
+
+        $this->publishes([
+            __DIR__ . '/../config/discounts.php' => config_path('discounts.php'),
+        ], 'config');
     }
 }
