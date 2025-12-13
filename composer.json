@@ -15,7 +15,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Nikita\\LaravelUserDiscounts\\Providers\\DiscountsServiceProvider"
+                "Nikita\\LaravelUserDiscounts\\DiscountsServiceProvider"
             ],
             "aliases": {
                 "Discounts": "Nikita\\LaravelUserDiscounts\\Facades\\Discounts"
