@@ -15,10 +15,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Vendor\\Discounts\\DiscountsServiceProvider"
+                "Nikita\\Discounts\\DiscountsServiceProvider"
             ],
             "aliases": {
-                "Discounts": "Vendor\\Discounts\\Facades\\Discounts"
+                "Discounts": "Nikita\\Discounts\\Facades\\Discounts"
             }
         }
     }

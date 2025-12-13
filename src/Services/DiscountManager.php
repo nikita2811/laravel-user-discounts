@@ -6,7 +6,7 @@ use Nikita\LaravelUserDiscounts\Models\Discount;
 use Nikita\LaravelUserDiscounts\Models\UserDiscount;
 use Nikita\LaravelUserDiscounts\Models\DiscountAudit;
 use App\Models\User;
-
+use Illuminate\Support\Facades\DB;
 use Nikita\LaravelUserDiscounts\Events\DiscountApplied;
 use Nikita\LaravelUserDiscounts\Events\DiscountAssigned;
 use Nikita\LaravelUserDiscounts\Events\DiscountRevoked;
@@ -50,8 +50,8 @@ class DiscountManager implements DiscountManagerContract
                 : -$d->discount->percentage);
             $original = $amount;
             $totalApplied = 0;
-            foreach ($eligible as $ud) {
-                $discount = $ud->discount->percentage;
+            foreach ($eligible as $userDiscount) {
+                $discount = $userDiscount->discount->percentage;
                 if (
                     $totalApplied + $discount >
                     config('discounts.max_percentage_cap')
@@ -60,20 +60,20 @@ class DiscountManager implements DiscountManagerContract
                 }
                 $totalApplied += $discount;
                 // Increment usage atomically
-                UserDiscount::where('id', $ud->id)->update([
+                UserDiscount::where('id', $userDiscount->id)->update([
                     'usage_count' => DB::raw('usage_count + 1'),
                 ]);
-                event(new DiscountApplied($user, $ud->discount));
+                event(new DiscountApplied($user, $userDiscount->discount));
             }
             // Apply discount
             $final = $amount * (1 - ($totalApplied / 100));
             $final = round($final, 2, config('discounts.rounding'));
             // Audit
-            foreach ($eligible as $ud) {
+            foreach ($eligible as $userDiscount) {
                 DiscountAudit::create([
                     'user_id' => $user->id,
-                    'discount_id' => $ud->discount->id,
-                    'applied_percentage' => $ud->discount->percentage,
+                    'discount_id' => $userDiscount->discount->id,
+                    'applied_percentage' => $userDiscount->discount->percentage,
                     'amount_before' => $original,
                     'amount_after' => $final
                 ]);
