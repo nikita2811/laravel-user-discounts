@@ -17,6 +17,10 @@ class DiscountServiceProvider extends ServiceProvider
         //
         $this->app->singleton(DiscountManagerContract::class, DiscountManager::class);
         $this->app->alias(DiscountManagerContract::class, 'discounts');
+        
+        // Merge package config with app config
+        $this->mergeConfigFrom(__DIR__ . '/../config/discounts.php', 'discounts');
+    }
     }
 
     /**
