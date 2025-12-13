@@ -84,10 +84,13 @@ class DiscountManager implements DiscountManagerContract
 
     public function revoke(User $user, Discount $discount)
     {
-        UserDiscount::where('user_id', $user->id)
+        $revoked = UserDiscount::where('user_id', $user->id)
             ->where('discount_id', $discount->id)
             ->update(['revoked' => true]);
+
+
         event(new DiscountRevoked($user, $discount));
+        return $revoked;
     }
 
     public function assign(User $user, Discount $discount)
