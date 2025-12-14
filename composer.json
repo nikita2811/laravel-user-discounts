@@ -11,7 +11,6 @@
             "email": "39294680+nikita2811@users.noreply.github.com"
         }
     ],
-    "require": {},
     "extra": {
         "laravel": {
             "providers": [
@@ -20,6 +19,15 @@
             "aliases": {
                 "Discounts": "Nikita\\LaravelUserDiscounts\\Facades\\Discounts"
             }
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.8",
+        "pestphp/pest": "^4.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
